@@ -1,5 +1,4 @@
 Plug-and-play cluster for Play
-======================
 
 Play Framework module for DDSL
 ----------------
