@@ -77,6 +77,8 @@ If you hit refresh several times you can se that you get response from both serv
 
  * It is not round-robin but round-random Loadbalancing :)
 
+ * If you only see one server, just keep retrying
+
  * You can add more servers if you like.
 
  * If you take one down, you will get some errors but after a couple of seconds The client will stop asking the server who went down.
