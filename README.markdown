@@ -1,7 +1,8 @@
-Plug-and-play cluster for Play
-
 Play Framework module for DDSL
 ----------------
+
+Plug-and-play cluster for Play
+
 
 [For info about DDSL](https://github.com/mbknor/ddsl)
 
