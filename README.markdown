@@ -81,6 +81,7 @@ If you hit refresh several times you can se that you get response from both serv
 
  * If you take one down, you will get some errors but after a couple of seconds The client will stop asking the server who went down.
 
+ * The client is configured to cache each url for 1 second.
 
 
 
