@@ -36,12 +36,14 @@ Try it
  * Get DDSL play module from github:
 	git clone git@github.com:mbknor/ddsl-playframework-module.git
 
-== Start the first server ==
+Start the first server
+----------------------
  * cd into ddsl-playframework-module/ddsl-play-producer-example/
  * start it:
 	~/tools/play-1.1.1/play run
 
-== start the consumer ==
+start the consumer
+----------------------
  * start a new console/terminal
  * cd into ddsl-playframework-module/ddsl-play-consumer-example/
  * start it:
@@ -50,7 +52,8 @@ Try it
 Go to [http://localhost:9000/](http://localhost:9000/) with your browser.
 You can se that the consumer has "found" the server.
 
-== Then start another server ==
+Then start another server
+----------------------
 
 (This is just a copy of the first one with different http-port)
 
