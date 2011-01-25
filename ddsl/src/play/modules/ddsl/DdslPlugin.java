@@ -1,11 +1,13 @@
 package play.modules.ddsl;
 
 import play.*;
+import play.server.*;
 import com.kjetland.ddsl.*;
 import com.kjetland.ddsl.config.*;
 import com.kjetland.ddsl.model.*;
 import java.lang.*;
 import java.net.*;
+import org.joda.time.DateTime;
 
 
 public class DdslPlugin extends PlayPlugin implements DdslConfig{
@@ -16,13 +18,17 @@ public class DdslPlugin extends PlayPlugin implements DdslConfig{
 	@Override
 	public void afterApplicationStart(){
 		Logger.info("DDSL loading config from application.conf");
-		this.client = new DdslClientImpl( this );
+		client = new DdslClientImpl( this );
 		
 		ServiceId sid = getServiceId();
 		if( sid == null ){
 			//nothing to register - we're done.
 			return ;
 		}
+		
+		ServiceLocation sl = getServiceLocation();
+		
+		client.serviceUp( new Service(sid, sl));
 	}
 	
 	@Override
@@ -39,16 +45,26 @@ public class DdslPlugin extends PlayPlugin implements DdslConfig{
 	Must resolve our serviceLocation
 	*/
 	private ServiceLocation getServiceLocation(){
-		String port = getProp("http.port", null, true);
+		String port = getProp("http.port", "9000", false);
 		String ip = getLocalIp();
+		//TODO: does not work when mounted on context other than / - ie as war in tomcat etc..
 		String url = "http://"+ip+":"+port + "/";
+		
+		return new ServiceLocation(url, "", 
+			Double.parseDouble(getProp("ddsl.locationquality", "0.0", false)),
+			new DateTime(),
+			null);
 	}
 	
 	/**
 	Resolve this computers IP
 	*/
 	private String getLocalIp(){
-		return InetAddress.getLocalHost().getHostAddress();
+		try{
+			return InetAddress.getLocalHost().getHostAddress();
+		}catch(Exception e){
+			throw new RuntimeException(e);
+		}
 	}
 	
 	/**
@@ -68,8 +84,7 @@ public class DdslPlugin extends PlayPlugin implements DdslConfig{
 		return new ServiceId( getProp("ddsl.serviceid.environment", null, true),
 			getProp("ddsl.serviceid.type", null, true),
 			getProp("ddsl.serviceid.name", null, true),
-			getProp("ddsl.serviceid.version", null, true),
-			null);
+			getProp("ddsl.serviceid.version", null, true));
 	}
 	
 	private String getProp(String name, String defaultValue, boolean mustHave){
