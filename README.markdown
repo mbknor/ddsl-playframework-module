@@ -45,8 +45,13 @@ Start the first server
 start the consumer
 ----------------------
  * start a new console/terminal
- * cd into ddsl-playframework-module/ddsl-play-consumer-example/
+ * cd into 
+
+	ddsl-playframework-module/ddsl-play-consumer-example/
+
  * start it:
+ * (Assuming *~/tools/play-1.1.1/play* is your valid path to play)
+
 	~/tools/play-1.1.1/play run
 
 Go to [http://localhost:9000/](http://localhost:9000/) with your browser.
@@ -58,8 +63,12 @@ Then start another server
 (This is just a copy of the first one with different http-port)
 
  * start a new console/terminal
- * cd into ddsl-playframework-module/ddsl-play-producer-example-2nd-server/
+ * cd into 
+
+	ddsl-playframework-module/ddsl-play-producer-example-2nd-server/
+
  * start it:
+
 	~/tools/play-1.1.1/play run
 	
 	
