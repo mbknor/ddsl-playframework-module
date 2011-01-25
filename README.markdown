@@ -37,6 +37,7 @@ Try it
  * [For info about DDSL](https://github.com/mbknor/ddsl)
  * Download [ZooKeeper](https://hadoop.apache.org/zookeeper/) and start it with defaults
  * Get DDSL play module from github:
+
 	git clone git@github.com:mbknor/ddsl-playframework-module.git
 
 Start the first server
