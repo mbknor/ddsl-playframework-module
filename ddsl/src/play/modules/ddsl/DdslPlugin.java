@@ -20,11 +20,15 @@ public class DdslPlugin extends PlayPlugin implements DdslConfig{
 	public void afterApplicationStart(){
 		
 		ddslEnvironment = getProp("ddsl.environment", "test", true);
-		Logger.info("DDSL loading config from application.conf. using ddsl.environment=" + ddslEnvironment);
+		
+		long ttl_mills = Long.parseLong(getProp("ddsl.client_cache_ttl_mills", "1000", true));
+		
+		Logger.info("DDSL loading config from application.conf. using ddsl.environment=" + ddslEnvironment+ ". client read cache: " + ttl_mills + " mills");
 		
 		
+		DdslClient realClient = new DdslClientImpl( this );
 		
-		client = new DdslClientImpl( this );
+		client = new DdslClientCacheReadsImpl( realClient, ttl_mills);
 		
 		ServiceId sid = getServiceId();
 		if( sid == null ){
