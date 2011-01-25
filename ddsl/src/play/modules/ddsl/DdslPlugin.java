@@ -13,11 +13,17 @@ import org.joda.time.DateTime;
 public class DdslPlugin extends PlayPlugin implements DdslConfig{
 	
 	
-	private DdslClient client = null;
+	public static DdslClient client = null;
+	public static String ddslEnvironment = null;
 	
 	@Override
 	public void afterApplicationStart(){
-		Logger.info("DDSL loading config from application.conf");
+		
+		ddslEnvironment = getProp("ddsl.environment", "test", true);
+		Logger.info("DDSL loading config from application.conf. using ddsl.environment=" + ddslEnvironment);
+		
+		
+		
 		client = new DdslClientImpl( this );
 		
 		ServiceId sid = getServiceId();
@@ -81,7 +87,7 @@ public class DdslPlugin extends PlayPlugin implements DdslConfig{
 		//ddsl.serviceid.type=http
 		//ddsl.serviceid.name=PlayExampleServer
 		//ddsl.serviceid.version=1.0
-		return new ServiceId( getProp("ddsl.serviceid.environment", null, true),
+		return new ServiceId( ddslEnvironment,
 			getProp("ddsl.serviceid.type", null, true),
 			getProp("ddsl.serviceid.name", null, true),
 			getProp("ddsl.serviceid.version", null, true));
