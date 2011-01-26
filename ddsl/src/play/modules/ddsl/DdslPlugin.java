@@ -115,7 +115,13 @@ public class DdslPlugin extends PlayPlugin implements DdslConfig{
 	
 	@Override
 	public DdslUrls getStaticUrls (ServiceId sid ){
-		throw new RuntimeException("not impl yet");
+		String key = "ddsl.fallback."+sid.getMapKey();
+		Logger.info("Cannot find url via ddsl - looking for fallback url in application.conf with key: " + key);
+		String url = Play.configuration.getProperty(key, null);
+		if( url == null) throw new RuntimeException("Error resolving fallback url from application.conf with key: " + key);
+		
+		//we don't care about the testurl
+		return new DdslUrls(url, null);
 	}
 	
 	

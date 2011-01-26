@@ -19,4 +19,17 @@ public class Application extends Controller {
         render(url, serverMsg);
     }
 
+
+	/**
+	controller that tries to resove noneexisting url - which triggers fallback solution.
+	*/
+	public static void fallbackTest() {
+	
+		String url = DDSL.getBestUrl( "PlayExampleServer", "1.1" );
+        
+		renderText("url: " + url);
+    }
+
+	
+
 }
