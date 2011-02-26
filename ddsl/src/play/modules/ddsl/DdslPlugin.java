@@ -60,7 +60,7 @@ public class DdslPlugin extends PlayPlugin implements DdslConfig{
 		//TODO: does not work when mounted on context other than / - ie as war in tomcat etc..
 		String url = "http://"+ip+":"+port + "/";
 		
-		return new ServiceLocation(url, "", 
+		return new ServiceLocation(url, 
 			Double.parseDouble(getProp("ddsl.locationquality", "0.0", false)),
 			new DateTime(),
 			null);
@@ -114,14 +114,13 @@ public class DdslPlugin extends PlayPlugin implements DdslConfig{
 	}
 	
 	@Override
-	public DdslUrls getStaticUrls (ServiceId sid ){
+	public String getStaticUrl (ServiceId sid ){
 		String key = "ddsl.fallback."+sid.getMapKey();
 		Logger.info("Cannot find url via ddsl - looking for fallback url in application.conf with key: " + key);
 		String url = Play.configuration.getProperty(key, null);
 		if( url == null) throw new RuntimeException("Error resolving fallback url from application.conf with key: " + key);
 		
-		//we don't care about the testurl
-		return new DdslUrls(url, null);
+		return url;
 	}
 	
 	
