@@ -6,7 +6,9 @@ Plug-and-play cluster for Play
 
 [For info about DDSL](https://github.com/mbknor/ddsl)
 
-The play framework module **DDSL** brings DDSL to play..
+The play framework module **DDSL** brings DDSL to play 1.2.x..
+
+(A [Play 2.0 module](https://github.com/mbknor/ddsl-play2-module) is also available)
 
 With DDSL you can create plug-and-play clusters with your play app both as server or client.
 
