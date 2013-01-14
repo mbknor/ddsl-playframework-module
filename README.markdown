@@ -1,6 +1,8 @@
 Play Framework module for DDSL
 ----------------
 
+January 14th 2013: Updated to use DDSL version 0.3.2
+
 Plug-and-play cluster for Play
 
 
@@ -46,7 +48,7 @@ Start the first server
 ----------------------
  * cd into ddsl-playframework-module/ddsl-play-producer-example/
  * start it:
-	~/tools/play-1.1.1/play run
+	~/tools/play-1.2.5/play run
 
 start the consumer
 ----------------------
@@ -56,9 +58,9 @@ start the consumer
 	ddsl-playframework-module/ddsl-play-consumer-example/
 
  * start it:
- * (Assuming *~/tools/play-1.1.1/play* is your valid path to play)
+ * (Assuming *~/tools/play-1.2.5/play* is your valid path to play)
 
-	~/tools/play-1.1.1/play run
+	~/tools/play-1.2.5/play run
 
 Go to [http://localhost:9000/](http://localhost:9000/) with your browser.
 You can se that the consumer has "found" the server.
@@ -75,7 +77,7 @@ Then start another server
 
  * start it:
 
-	~/tools/play-1.1.1/play run
+	~/tools/play-1.2.5/play run
 	
 	
 Go back to [http://localhost:9000/](http://localhost:9000/) with your browser.
